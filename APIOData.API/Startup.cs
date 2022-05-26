@@ -60,7 +60,7 @@ namespace APIOData.API
             {
                 //Birinci "odata" routeName olarak veriyoruz.
                 //Ýkinci "odata" ise www.your_awesome_domain.com/odata/entityName sorgulama yapacaðýmýz prefix'i tanýmlamak için veriyoruz
-                endpoints.Select().Expand().OrderBy().MaxTop(null).Count();
+                endpoints.Select().Expand().OrderBy().MaxTop(null).Count().Filter();
                 endpoints.MapODataRoute("odata", "odata", builder.GetEdmModel());
                 endpoints.MapControllers();
             });
