@@ -16,10 +16,18 @@ namespace APIOData.API.Controllers
             _context = context;
         }
 
+
         [EnableQuery]
         public IActionResult Get()
         {
             return Ok(_context.Products.AsQueryable());
         }
+
+        [EnableQuery]
+        public IActionResult GetProducts([FromODataUri]int key)
+        {
+            return Ok(_context.Products.Where(x => x.Id == key));
+        }
+
     }
 }

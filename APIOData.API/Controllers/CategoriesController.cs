@@ -1,7 +1,9 @@
 ﻿using APIOData.API.Models;
 using Microsoft.AspNet.OData;
+using Microsoft.AspNet.OData.Routing;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace APIOData.API.Controllers
 {
@@ -22,6 +24,13 @@ namespace APIOData.API.Controllers
         public IActionResult Get()
         {
             return Ok(_context.Categories);
+        }
+
+        [ODataRoute("Products({Item})")]
+        [EnableQuery]
+        public IActionResult GetProducts([FromODataUri] int key)
+        {
+            return Ok(_context.Products.Where(x => x.Id == key));
         }
     }
 }
