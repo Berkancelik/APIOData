@@ -2,6 +2,7 @@
 using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace APIOData.API.Controllers
 {
@@ -18,7 +19,7 @@ namespace APIOData.API.Controllers
         [EnableQuery]
         public IActionResult Get()
         {
-            return Ok(_context.Products);
+            return Ok(_context.Products.AsQueryable());
         }
     }
 }
