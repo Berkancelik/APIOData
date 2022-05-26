@@ -58,9 +58,9 @@ namespace APIOData.API
 
             app.UseEndpoints(endpoints =>
             {
-                // ilki bizim normal isimlendirme iken ikincisi ; 
-                //www.api.com//odata/products
-                // Edm: EntityDataModel
+                //Birinci "odata" routeName olarak veriyoruz.
+                //Ýkinci "odata" ise www.your_awesome_domain.com/odata/entityName sorgulama yapacaðýmýz prefix'i tanýmlamak için veriyoruz
+                endpoints.Select();
                 endpoints.MapODataRoute("odata", "odata", builder.GetEdmModel());
                 endpoints.MapControllers();
             });
