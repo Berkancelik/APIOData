@@ -1,5 +1,6 @@
 ﻿using APIOData.API.Models;
 using Microsoft.AspNet.OData;
+using Microsoft.AspNet.OData.Routing;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -29,9 +30,9 @@ namespace APIOData.API.Controllers
             return Ok(_context.Products.Where(x => x.Id == key));
         }
 
-        // isimlendirme isimleri rastgele isimler değildir
+        [ODataRoute("Products")]
         [HttpPost]
-        public IActionResult PostProduct(Product product)
+        public IActionResult Create(Product product)
         {
             _context.Products.Add(product);
             _context.SaveChanges();
@@ -39,7 +40,7 @@ namespace APIOData.API.Controllers
         }
 
         [HttpPut]
-        public IActionResult PutProduct([FromODataUri] int key, [FromBody] Product product)
+        public IActionResult Update([FromODataUri] int key, [FromBody] Product product)
         {
             product.Id = key;
             // güncellenmiş yani modified olmuş anlamına gelir
@@ -48,6 +49,19 @@ namespace APIOData.API.Controllers
             _context.SaveChanges();
             return NoContent();
 
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteProduct([FromODataUri] int key)
+        {
+            var product = _context.Products.Find(key);
+            if (product==null)
+            {
+                return NotFound();
+            }
+            _context.Products.Remove(product);
+            _context.SaveChanges();
+            return NoContent();
         }
 
     }
