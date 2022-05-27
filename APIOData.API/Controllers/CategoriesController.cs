@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace APIOData.API.Controllers
 {
- 
+    [ODataRoutePrefix("Products")] 
     public class CategoriesController : ODataController
     {
         private readonly AppDbContext _context;
@@ -26,11 +26,29 @@ namespace APIOData.API.Controllers
             return Ok(_context.Categories);
         }
 
-        [ODataRoute("Products({Item})")]
-        [EnableQuery]
+        [EnableQuery(PageSize = 2)]
         public IActionResult GetProducts([FromODataUri] int key)
         {
-            return Ok(_context.Products.Where(x => x.Id == key));
+            return Ok(_context.Products.AsQueryable());
         }
+
+        [HttpGet]
+        [EnableQuery]
+        [ODataRoute("Categories({id}/products({item}))")]
+        public IActionResult ProdcutById([FromODataUri]int id,[FromODataUri] int item)
+        {
+            return Ok(_context.Products.Where(x => x.CategoryId == id && x.Id == item));
+        }
+
+        [HttpGet]
+        [EnableQuery]
+        public IActionResult GetProducts2([FromODataUri] int id)
+        {
+            return Ok(_context.Products.Where(x => x.CategoryId == id ));
+        }
+
+
+     
     }
 }
+

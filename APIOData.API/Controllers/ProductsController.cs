@@ -29,5 +29,15 @@ namespace APIOData.API.Controllers
             return Ok(_context.Products.Where(x => x.Id == key));
         }
 
+        // isimlendirme isimleri rastgele isimler değildir
+        [HttpPost]
+        public IActionResult PostProduct(Product product)
+        {
+            _context.Products.Add(product);
+            _context.SaveChanges();
+            return Ok();
+        }
+
+
     }
 }
