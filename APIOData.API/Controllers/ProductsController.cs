@@ -38,6 +38,17 @@ namespace APIOData.API.Controllers
             return Ok();
         }
 
+        [HttpPut]
+        public IActionResult PutProduct([FromODataUri] int key, [FromBody] Product product)
+        {
+            product.Id = key;
+            // güncellenmiş yani modified olmuş anlamına gelir
+            _context.Entry(product).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+
+            _context.SaveChanges();
+            return NoContent();
+
+        }
 
     }
 }
