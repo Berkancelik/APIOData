@@ -48,7 +48,25 @@ namespace APIOData.API.Controllers
         }
 
 
-     
+
+        [HttpPost]
+        public IActionResult TotalProductPrice([FromODataUri]int key)
+        {
+            var total = _context.Products.Where(x => x.CategoryId == key).Sum(x => x.Price);
+            return Ok(total);
+        }
+
+
+        [HttpPost]
+        public IActionResult TotalProductPrice2()
+        {
+            var total = _context.Products.Sum(x=> x.Price);
+            return Ok(total);
+        }
+
+
+
+
     }
 }
 

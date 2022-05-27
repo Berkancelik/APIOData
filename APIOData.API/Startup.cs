@@ -39,10 +39,15 @@ namespace APIOData.API
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             var builder = new ODataConventionModelBuilder();
-            // categoriesController
-            //[entity set Name] Controller
+
+
+
             builder.EntitySet<Category>("Categories");
             builder.EntitySet<Category>("Products");
+
+            //..../odata/categoty(1)/totalproductprice
+            builder.EntityType<Category>().Action("TotalProductPrice").Returns<int>();
+            builder.EntityType<Category>().Collection.Action("TotalProduct2").Returns<int>();
 
 
             if (env.IsDevelopment())
