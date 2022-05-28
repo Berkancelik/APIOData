@@ -64,6 +64,16 @@ namespace APIOData.API.Controllers
             return Ok(total);
         }
 
+        [HttpPost]
+        public IActionResult TotalProductWithParametre(ODataActionParameters parameters)
+        {
+            int categoryId = (int)parameters["categoryId"];
+            var total = _context.Products.Where(x => x.CategoryId == categoryId).Sum(x => x.Price);
+            return Ok(total);
+
+
+
+        }
 
 
 

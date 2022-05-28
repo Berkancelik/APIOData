@@ -64,5 +64,16 @@ namespace APIOData.API.Controllers
             return NoContent();
         }
 
+        [HttpPost]
+        public IActionResult Login(ODataActionParameters parameters)
+        {
+            Login login = parameters["UserLogin"] as Login;
+
+            return Ok(login.Email + " -  " + login.Password);
+        }
+
+
+      
+
     }
 }

@@ -49,6 +49,15 @@ namespace APIOData.API
             builder.EntityType<Category>().Action("TotalProductPrice").Returns<int>();
             builder.EntityType<Category>().Collection.Action("TotalProduct2").Returns<int>();
 
+            //odata/categories/totalprice
+            builder.EntityType<Category>().Collection.Action("TotalProductWithParametre").Returns<int>
+                ().Parameter<int>("categotyId");
+
+
+
+
+            builder.EntityType<Product>().Collection.Action("Login").Returns<string>().Parameter<Login>("UserLogin");
+
 
             if (env.IsDevelopment())
             {
