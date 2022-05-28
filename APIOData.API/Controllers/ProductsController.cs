@@ -73,6 +73,12 @@ namespace APIOData.API.Controllers
         }
 
 
+        //products/multiplayFunction()
+        [HttpGet]
+        public IActionResult MultiplyFuncction([FromODataUri] int a1, [FromODataUri] int a2, [FromODataUri] int a3)
+        {
+            return Ok(a1 * a2 * a3);
+        }
       
 
     }

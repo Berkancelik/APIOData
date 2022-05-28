@@ -44,6 +44,11 @@ namespace APIOData.API
             //Funcitons
             builder.EntityType<Category>().Collection.Function("CategoryCount").Returns<int>();
 
+            var MultiplyFunction = builder.EntityType<Product>().Function("MultiplyFunction");
+            MultiplyFunction.Parameter<int>("a1");
+            MultiplyFunction.Parameter<int>("a2");
+            MultiplyFunction.Parameter<int>("a3");
+
 
 
             // categories()
