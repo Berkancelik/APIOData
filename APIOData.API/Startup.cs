@@ -44,6 +44,9 @@ namespace APIOData.API
             //Funcitons
             builder.EntityType<Category>().Collection.Function("CategoryCount").Returns<int>();
 
+
+            builder.Function("GetKdv").Returns<int>();
+
             var MultiplyFunction = builder.EntityType<Product>().Function("MultiplyFunction");
             MultiplyFunction.Parameter<int>("a1");
             MultiplyFunction.Parameter<int>("a2");
