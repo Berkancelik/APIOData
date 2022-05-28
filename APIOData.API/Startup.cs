@@ -41,10 +41,21 @@ namespace APIOData.API
             var builder = new ODataConventionModelBuilder();
 
 
+            //Funcitons
+            builder.EntityType<Category>().Collection.Function("CategoryCount").Returns<int>();
 
+
+
+            // categories()
+
+
+
+            //--------------------------------///-------------------------
             builder.EntitySet<Category>("Categories");
             builder.EntitySet<Category>("Products");
 
+
+            //Action
             //..../odata/categoty(1)/totalproductprice
             builder.EntityType<Category>().Action("TotalProductPrice").Returns<int>();
             builder.EntityType<Category>().Collection.Action("TotalProduct2").Returns<int>();

@@ -71,8 +71,13 @@ namespace APIOData.API.Controllers
             var total = _context.Products.Where(x => x.CategoryId == categoryId).Sum(x => x.Price);
             return Ok(total);
 
+        }
 
-
+        [HttpGet]
+        public IActionResult CategoryCount()
+        {
+            var count = _context.Categories.Count();
+            return Ok(count);
         }
 
 
