@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Routing;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APIOData.API.Controllers

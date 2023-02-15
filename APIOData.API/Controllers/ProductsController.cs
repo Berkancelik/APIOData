@@ -1,13 +1,12 @@
 ﻿using APIOData.API.Models;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Routing;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
 namespace APIOData.API.Controllers
 {
-  
+
     public class ProductsController : ControllerBase
     {
         private readonly AppDbContext _context;
@@ -25,7 +24,7 @@ namespace APIOData.API.Controllers
         }
 
         [EnableQuery]
-        public IActionResult GetProducts([FromODataUri]int key)
+        public IActionResult GetProducts([FromODataUri] int key)
         {
             return Ok(_context.Products.Where(x => x.Id == key));
         }
@@ -55,7 +54,7 @@ namespace APIOData.API.Controllers
         public IActionResult DeleteProduct([FromODataUri] int key)
         {
             var product = _context.Products.Find(key);
-            if (product==null)
+            if (product == null)
             {
                 return NotFound();
             }
@@ -79,7 +78,7 @@ namespace APIOData.API.Controllers
         {
             return Ok(a1 * a2 * a3);
         }
-      
+
 
     }
 }
